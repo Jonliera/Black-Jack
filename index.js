@@ -31,5 +31,6 @@ const renderGame = () => {
 const newCard = () => {
   let card = 5;
   sum += card;
+  cards.push(card);
   renderGame();
 };
