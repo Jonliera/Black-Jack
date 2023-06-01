@@ -1,13 +1,18 @@
-let firstCard = getRandomCard();
-let secondCard = getRandomCard();
-let cards = [firstCard, secondCard];
-let sum = firstCard + secondCard;
+// Purpose: Blackjack game
+let player = {
+  name: "jon",
+  chips: 150,
+};
+let cards = [];
+let sum = 0;
 let hasBlackjack = false;
-let isAlive = true;
+let isAlive = false;
 let message = "";
 let messageEl = document.getElementById("message-el");
 let sumEl = document.getElementById("sum-el");
 let cardsEl = document.getElementById("cards-el");
+let playerEl = document.getElementById("player-el");
+playerEl.textContent = player.name + ": $" + player.chips;
 
 const getRandomCard = () => {
   let randomNumber = Math.floor(Math.random() * 13) + 1;
@@ -21,6 +26,11 @@ const getRandomCard = () => {
 };
 
 const startGame = () => {
+  isAlive = true;
+  let firstCard = getRandomCard();
+  let secondCard = getRamdomCard();
+  cards = [firstCard, secondCard];
+  sum = firstCard + secondCard;
   renderGame();
 };
 
@@ -43,8 +53,10 @@ const renderGame = () => {
 };
 
 const newCard = () => {
-  let card = getRandomCard();
-  sum += card;
-  cards.push(card);
-  renderGame();
+  if (isAlive === true && hasBlackjack === false) {
+    let card = getRandomCard();
+    sum += card;
+    cards.push(card);
+    renderGame();
+  }
 };
